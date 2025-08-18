@@ -1,0 +1,19 @@
+@import "../../styles/App.scss";
+.box {
+  position: relative;
+  z-index: 3;
+  width: 50%;
+  height: 36px;
+  @include flex();
+  &.long{
+    width: 100%;
+  }
+  &.active{
+    background-color: $green;
+    color: #fff;
+  }
+}
+.box:hover {
+  background-color: $green;
+  color: white;
+}

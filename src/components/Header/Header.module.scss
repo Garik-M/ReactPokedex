@@ -1,0 +1,63 @@
+@import "../../styles/App.scss";
+
+.header {
+  width: 100%;
+  max-width: 1116px;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 20fr auto 1fr;
+  justify-content: space-between;
+  .filters {
+    display: flex;
+    justify-content: start;
+    gap: 20px;
+    .filter_divs {
+      @include flex($gap: 20px);
+    }
+  }
+}
+
+.tagline {
+  @include flex();
+  font-size: 48px;
+  font-weight: bold;
+  color: $green;
+}
+
+@media screen and (max-width: 1050px) {
+  .header {
+    grid-template-columns: 20fr auto;
+    .filters {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    grid-template-columns: 1fr;
+    .filters {
+      display: flex;
+      gap: 20px;
+      flex-direction: column;
+
+      .filter_divs {
+        justify-content: space-between;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 463px) {
+  .header {
+    .filters {
+      grid-template-rows: 1fr 2fr;
+      .filter_divs {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}

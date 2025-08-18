@@ -1,0 +1,50 @@
+@import "../../styles/App.scss";
+
+.pagination {
+  @include flex();
+  justify-content: end;
+  user-select: none;
+  color: $green;
+
+  .container {
+    @include flex();
+    box-shadow: 1px 3px 8px 0 rgba(0, 0, 0, 0.2);
+    margin-top: 40px;
+    cursor: pointer;
+  }
+
+  .prev_next {
+    @include flex();
+    width: 60px;
+    height: 40px;
+  }
+
+  .box {
+    @include flex();
+    width: 40px;
+    height: 40px;
+  }
+
+  .active {
+    background-color: $green;
+    color: white;
+  }
+}
+
+@media screen and (max-width: 463px) {
+  .pagination {
+    width: 100%;
+    .container {
+      width: 100%;
+      .box:nth-child(8) {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 424px) {
+  .box:nth-child(7) {
+    display: none;
+  }
+}

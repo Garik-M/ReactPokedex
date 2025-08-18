@@ -1,0 +1,65 @@
+@import "../../styles/App.scss";
+
+.container {
+  @include flex($gap: 10px);
+  color: $green;
+  background-color: #fff;
+  
+  .dropdown {
+    height: 35px;
+    @include flex();
+    padding: 8px 6px 8px 12px;
+    position: relative;
+    cursor: pointer;
+
+    &.isOpen{
+      box-shadow: 1px 3px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+    .arrow {
+      fill: $green;
+      transform: scale(0.55) rotate(90deg);
+      transition: 0.2s;
+    }
+    .arrow:has(+ .open) {
+      transform: scale(0.55) rotate(-90deg);
+    }
+    .wrapper {
+      width: 100%;
+      display: none;
+      position: absolute;
+      top: 35px;
+      left: 0;
+      box-shadow: 1px 3px 8px 0 rgba(0, 0, 0, 0.2);
+      background-color: #fff;
+      z-index: 3;
+
+      &.open {
+        @include flex($dir1: column);
+      }
+
+      .box {
+        width: 60px;
+        height: 35px;
+        @include flex();
+
+        &.active{
+          background-color: $green;
+          color: #fff;
+        }
+      }
+      .box:hover {
+        background-color: $green;
+        color: white;
+      }
+    }
+    .arrow:has(+ .open) {
+      transform: scale(0.55) rotate(-90deg);
+    }
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .container {
+    display: none;
+  }
+}

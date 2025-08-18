@@ -1,0 +1,81 @@
+@import "../../styles/App.scss";
+
+.content {
+  @include flex(start, start, $dir1: column);
+  width: 100%;
+  max-width: 1180px;
+  padding: 60px 32px 140px;
+  margin: 0 auto;
+
+  .link {
+    font-size: 20px;
+    font-weight: 500;
+    text-decoration: none;
+    color: $green;
+  }
+  .name {
+    width: 100%;
+    @include flex();
+    font-size: 48px;
+    font-weight: 700;
+    color: $green;
+  }
+  .container {
+    @include flex($gap: 48px);
+    margin-top: 40px;
+    width: 100%;
+    .imgDiv {
+      @include flex();
+      width: 420px;
+      height: 420px;
+      background-color: #f2f2f2;
+      border-radius: 10px;
+      padding: 20px;
+      img {
+        width: 100%;
+      }
+    }
+    .stats {
+      @include flex($dir2: wrap, $gap: 24px);
+      padding: 16px 20px;
+      margin: 12px 0 0;
+
+      .statBox {
+        @include flex($dir1: column);
+      }
+    }
+  }
+}
+
+.loadingName {
+  @include flex($gap: 7px);
+
+  .circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    background-color: $green;
+    animation: .6s ease-in-out jump infinite;
+  }
+  .circle:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+  .circle:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .circle:nth-child(4) {
+    animation-delay: 0.45s;
+  }
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

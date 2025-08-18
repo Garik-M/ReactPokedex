@@ -1,0 +1,58 @@
+@import "../../styles/App.scss";
+
+.filter {
+  background-color: #fff;
+  position: relative;
+  max-width: 256px;
+  height: 40px;
+  @include flex($gap: 14px);
+  padding: 8px 6px 8px 12px;
+  font-size: 16px;
+  box-shadow: 1px 3px 8px 0 rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+  cursor: pointer;
+  .arrow {
+    fill: $green;
+    transform: scale(0.55) rotate(90deg);
+    transition: 0.2s;
+  }
+
+  .dropdown1 {
+    box-shadow: 1px 3px 8px 0 rgba(0, 0, 0, 0.2);
+    display: none;
+    position: absolute;
+    width: 200%;
+    height: 360px;
+    z-index: 2;
+    top: 40px;
+    left: 0;
+    gap: 0;
+    background-color: #fff;
+    white-space: nowrap;
+
+    &.open {
+      @include flex($dir1: column, $dir2: wrap);
+    }
+  }
+  .arrow:has(+ .open) {
+    transform: scale(0.55) rotate(-90deg);
+  }
+
+  .dropdown2 {
+    width: 255px;
+    height: auto;
+  }
+}
+
+
+@media screen and (max-width: 463px){
+  .filter{
+    width: 100%;
+    max-width: none;
+    justify-content: space-between;
+
+    .dropdown1{
+      width: 100%;
+    }
+  }
+}
