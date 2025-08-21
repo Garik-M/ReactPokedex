@@ -15,6 +15,7 @@ const router = createBrowserRouter([
     errorElement: <div>404 | NOT FOUND</div>,
   },
 ]);
+
 function App() {
   return (
     <RouterProvider router={router} />

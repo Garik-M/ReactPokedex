@@ -174,34 +174,35 @@ const Header = ({
     }
   };
 
+  const filterProps = {
+    typeOptions,
+    handleClick,
+  };
+  const ListProps = {
+    setAmount,
+    setStartIndex,
+    setEndIndex,
+    setNum,
+    setActive,
+  };
+
   return (
     <>
       <div className={styles.tagline}>Pokédex</div>
       <div className={styles.header}>
         <div className={styles.filters}>
-          <Form
-            setData={setData}
-            text={text}
-            setText={setText}
-            handleSubmit={handleSubmit}
-          />
+          <Form text={text} setText={setText} handleSubmit={handleSubmit} />
           <div className={styles.filter_divs}>
-            <Filter
-              text="All Types"
-              dropdown1={true}
-              typeOptions={typeOptions}
-              handleClick={handleClick}
-            />
+            <Filter text="All Types" dropdown1={true} {...filterProps} />
             <Filter
               text="Lowest To Highest Number"
               dropdown1={false}
-              typeOptions={sortOptions}
-              handleClick={handleClick}
+              {...filterProps}
             />
           </div>
         </div>
         <div>
-          <ListNum amount={amount} setAmount={setAmount} setStartIndex={setStartIndex} setEndIndex={setEndIndex} setNum={setNum} setActive={setActive}/>
+          <ListNum amount={amount} {...ListProps} />
         </div>
       </div>
     </>

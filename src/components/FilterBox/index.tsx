@@ -20,13 +20,16 @@ const FilterBox = ({
   setCurrentFilter,
   currentFilter,
 }: Props) => {
+  const isActive = currentFilter === label ? styles.active : "";
+  const isLong = !dropdown1 ? styles.long : "";
+
   return (
     <div
       key={label}
-      className={`${styles.box} ${dropdown1 ? "" : styles.long} ${currentFilter === label ? styles.active : ""}`}
+      className={`${styles.box} ${isLong} ${isActive}`}
       tabIndex={0}
       onClick={(e) => {
-        handleClick(e, dropdown1, setCurrentFilter, label)
+        handleClick(e, dropdown1, setCurrentFilter, label);
       }}
     >
       {label}

@@ -1,10 +1,10 @@
-import { PokeData, Proptype } from "./Card.types";
+import { Proptype } from "./Card.types";
 import styles from "./Card.module.scss";
 import { Link } from "react-router-dom";
 
 const Card = ({ name, id, data }: Proptype) => {
-  const pic = data?.sprites?.other?.["official-artwork"]?.front_default;
-  const finalId = id.length >= 3 ? id : id.length === 2 ? "0" + id : "00" + id;
+  const pic = data?.sprites.other["official-artwork"].front_default;
+  const finalId = id!.length >= 3 ? id : id?.length === 2 ? "0" + id : "00" + id;
   const newName = name.slice(0, 1).toUpperCase() + name.slice(1);
   const dataTypes = data?.types
     .map((obj) => {
@@ -12,9 +12,6 @@ const Card = ({ name, id, data }: Proptype) => {
     })
     .join(", ");
 
-  const handlePokemonClick = () => {
-    <Link to={`/pokemon/${Number(id)}`} />;
-  };
   if (!pic) {
     return (
       <div className={styles.card}>

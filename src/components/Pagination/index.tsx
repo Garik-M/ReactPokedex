@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./Pagination.module.scss";
+import { time } from "console";
 
 type Prop = {
   setStartIndex: React.Dispatch<React.SetStateAction<number>>;
@@ -11,7 +12,7 @@ type Prop = {
   active: number;
   setActive: React.Dispatch<React.SetStateAction<number>>;
 };
-
+let timeOut: NodeJS.Timeout;
 const handleClick = (
   evt: React.MouseEvent<HTMLDivElement, globalThis.MouseEvent>,
   setStartIndex: React.Dispatch<React.SetStateAction<number>>,
@@ -21,8 +22,11 @@ const handleClick = (
   setNum: React.Dispatch<React.SetStateAction<number>>
 ) => {
   const num1 = Number(evt.currentTarget.innerHTML);
-  setStartIndex((num1 - 1) * amount);
-  setEndIndex(num1 * amount);
+  clearTimeout(timeOut);
+  timeOut = setTimeout(() => {
+    setStartIndex((num1 - 1) * amount);
+    setEndIndex(num1 * amount);
+  }, 500);
   if (num1 > num + 3 && (num + 3) * amount < 900 - amount) {
     if ((num + 3) * amount >= 900 - 4 * amount) {
       setNum(num);
@@ -37,7 +41,6 @@ const handleClick = (
     }
   }
 };
-
 const handleNextPrevClick = (
   e: React.MouseEvent<HTMLDivElement, globalThis.MouseEvent>,
   setStartIndex: React.Dispatch<React.SetStateAction<number>>,
@@ -52,26 +55,38 @@ const handleNextPrevClick = (
   if (e.currentTarget.innerHTML === "←") {
     if (num >= 1 || active > 1) {
       if (active > 1 && num === 1) {
-        setStartIndex(startIndex - amount);
-        setEndIndex(startIndex);
+        clearTimeout(timeOut);
+        timeOut = setTimeout(() => {
+          setStartIndex(startIndex - amount);
+          setEndIndex(startIndex);
+        }, 500);
         setNum(num);
         setActive(active - 1);
       } else if (num > 1) {
-        setStartIndex(startIndex - amount);
-        setEndIndex(startIndex);
+        clearTimeout(timeOut);
+        timeOut = setTimeout(() => {
+          setStartIndex(startIndex - amount);
+          setEndIndex(startIndex);
+        }, 500);
         setNum(num - 1);
         setActive(active - 1);
       }
     }
   } else {
     if ((num + 6) * amount < 900 && active !== num + 6) {
-      setStartIndex(startIndex + amount);
-      setEndIndex(startIndex + amount * 2);
+      clearTimeout(timeOut);
+      timeOut = setTimeout(() => {
+        setStartIndex(startIndex + amount);
+        setEndIndex(startIndex + amount * 2);
+      }, 500);
       setNum(num + 1);
       setActive(active + 1);
     } else if ((num + 6) * amount === 900 && active !== num + 6) {
-      setStartIndex(startIndex + amount);
-      setEndIndex(startIndex + amount * 2);
+      clearTimeout(timeOut);
+      timeOut = setTimeout(() => {
+        setStartIndex(startIndex + amount);
+        setEndIndex(startIndex + amount * 2);
+      }, 500);
       setActive(active + 1);
     }
   }
@@ -104,7 +119,7 @@ const Pagination = ({
       </div>
     );
   });
-
+  
   return (
     <div className={styles.pagination}>
       <div className={styles.container}>

@@ -1,31 +1,73 @@
 import { useEffect, useState } from "react";
-import styles from "./Pokemon.module.scss";
 import { Link, useParams } from "react-router-dom";
-import { PokeData } from "../../components/Card/Card.types";
 
-type Prop = {};
+import styles from "./Pokemon.module.scss";
 
-const Pokemon = ({}: Prop) => {
-  const [data, setData] = useState<PokeData>();
+import {
+  EvolveType,
+  PokeData,
+  SpeciesType,
+} from "../../components/Card/Card.types";
+import InfoContainer from "../../components/InfoContainer";
+import Evolution from "../../components/Evolution";
+import Loading from "../../components/Loading";
 
+const Pokemon = () => {
   const params = useParams();
 
-  const getData = async () => {
-    const response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/${params.id}`
-    );
+  const [data, setData] = useState<PokeData>();
+  const [speciesData, setSpeciesData] = useState<SpeciesType>();
+  const [evolveData, setEvolveData] = useState<EvolveType>();
 
-    if (response.ok) {
-      const data = await response.json();
-      setData(data);
-    } else {
-      return <div>404 not Found</div>;
+  const getData = async () => {
+    try {
+      const response = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${params.id}`
+      );
+
+      if (!response.ok) {
+        return <div>404 | not Found</div>;
+      }
+      const data1 = await response.json();
+      setData(data1);
+      const res = await fetch(data1.species.url);
+      const speciesData1 = await res.json();
+      setSpeciesData(speciesData1);
+    } catch (err) {
+      console.log(`caught ${err} \n\n at fetching`);
     }
+  };
+
+  const getEvolveData = async () => {
+    if (!speciesData?.evolution_chain?.url) return;
+
+    const evolveData1 = await fetch(speciesData?.evolution_chain.url);
+    const evolveData = await evolveData1.json();
+    setEvolveData(evolveData);
   };
 
   useEffect(() => {
     getData();
   }, []);
+
+  useEffect(() => {
+    getEvolveData();
+  }, [speciesData]);
+
+  const infos = {
+    height: data?.height,
+    weight: data?.weight,
+    types: data?.types.map((t) => t.type.name),
+    category: speciesData?.genera.find((g) => g.language.name === "en")?.genus,
+    genders: "genderless",
+    abilities: data?.abilities
+      .filter((a) => !a.is_hidden)
+      .map((a) => a.ability.name),
+    flavor: speciesData?.flavor_text_entries.find(
+      (obj) => obj.language.name === "en"
+    )?.flavor_text,
+    img: data?.sprites.other["official-artwork"].front_default,
+  };
 
   const id =
     params.id?.length === 1
@@ -38,39 +80,20 @@ const Pokemon = ({}: Prop) => {
     .slice(0, 1)
     .toUpperCase()}${data?.forms[0].name.slice(1)} #${id}`;
 
-  const isLoading = `undefinedundefined #${id}`;
-  const loading = (
-    <div className={styles.loadingName}>
-      <div className={styles.circle}></div>
-      <div className={styles.circle}></div>
-      <div className={styles.circle}></div>
-      <div className={styles.circle}></div>
+  return !data || !speciesData || !evolveData ? (
+    <div className={styles.contain}>
+      <Loading />
     </div>
-  );
-  const img = data?.sprites.other["official-artwork"].front_default;
-  return (
+  ) : (
     <div className={styles.content}>
       <div>
         <Link to="/" className={styles.link}>
           ← Explore more Pokémon
         </Link>
       </div>
-      <div className={styles.name}>{name === isLoading ? loading : name}</div>
-      <div className={styles.container}>
-        <div className={styles.imgDiv}>
-          {!img ? loading : <img src={img} />}
-        </div>
-        <div className={styles.flavor}>{}</div>
-        <div className={styles.stats}>
-          <div className={styles.statBox}></div>
-          <div className={styles.statBox}></div>
-          <div className={styles.statBox}></div>
-          <div className={styles.statBox}></div>
-          <div className={styles.statBox}></div>
-          <div className={styles.statBox}></div>
-        </div>
-      </div>
-      <div></div>
+      <div className={styles.name}>{name}</div>
+      <InfoContainer infos1={infos} data={data} />
+      <Evolution data={evolveData} />
     </div>
   );
 };

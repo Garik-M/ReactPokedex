@@ -33,6 +33,17 @@ const Main = ({
   setEndIndex,
 }: Props) => {
   const [details, setDetails] = useState<Record<string, PokeData>>({});
+  const PaginationProps = {
+    setStartIndex,
+    amount,
+    setEndIndex,
+    startIndex,
+    num,
+    setNum,
+    active,
+    setActive,
+  };
+
   useEffect(() => {
     setEndIndex(amount + startIndex);
   }, [amount, startIndex]);
@@ -86,16 +97,7 @@ const Main = ({
   return (
     <>
       <div className={styles.main}>{renderCard}</div>
-      <Pagination
-        setStartIndex={setStartIndex}
-        amount={amount}
-        setEndIndex={setEndIndex}
-        startIndex={startIndex}
-        num={num}
-        setNum={setNum}
-        active={active}
-        setActive={setActive}
-      />
+      <Pagination {...PaginationProps} />
     </>
   );
 };

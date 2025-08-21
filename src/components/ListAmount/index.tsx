@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./ListAmount.module.scss";
+import { ReactComponent as Arrow } from "../../assets/svg/arrow.svg";
 
 type Props = {
   amount: number;
@@ -59,14 +60,7 @@ const ListNum = ({
         tabIndex={0}
       >
         <p>{amount}</p>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          className={styles.arrow}
-        >
-          <path d="m5 3 3.057-3L20 12 8.057 24 5 21l9-9z"></path>
-        </svg>
+        <Arrow className={styles.arrow}/>
         <div className={`${styles.wrapper} ${isOpen ? styles.open : ""}`}>
           {amounts}
         </div>

@@ -1,0 +1,27 @@
+@import "../../styles/App.scss";
+
+.statBox {
+  @include flex(start, $dir1: column);
+  max-height: 80px;
+  .statName {
+    color: $green;
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+  .statValue {
+    width: min-content;
+    white-space: wrap;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 1050px){
+  .statBox{
+    .statName{
+      font-size: 16px;
+    }
+    .statValue{
+      font-size: 16px;
+    }
+  }
+}

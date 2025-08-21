@@ -11,7 +11,7 @@ type FilterProps = {
     evt: React.MouseEvent<HTMLDivElement, MouseEvent>,
     dropdown1: boolean,
     setCurrentFilter: React.Dispatch<React.SetStateAction<string>>,
-    idFilterText: string,
+    idFilterText: string
   ) => Promise<void>;
 };
 
@@ -20,26 +20,33 @@ const Filter = ({ text, dropdown1, typeOptions, handleClick }: FilterProps) => {
   const [currentFilter, setCurrentFilter] = useState(text);
   const ref = useRef<HTMLDivElement>(null);
 
+  const FilterBoxProps = {
+    handleClick,
+    dropdown1,
+    setCurrentFilter,
+    currentFilter,
+  };
+
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (ref.current && !ref.current.contains(e.target as Node)) {
         setIsOpen(false);
       }
     }
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const renderItems = typeOptions.map((label) => (
-    <FilterBox
-      key={label}
-      label={label}
-      handleClick={handleClick}
-      dropdown1={dropdown1}
-      setCurrentFilter={setCurrentFilter}
-      currentFilter={currentFilter}
-    />
+    <FilterBox key={label} label={label} {...FilterBoxProps} />
   ));
+
+  const filterId = dropdown1 ? "dropdown1Text" : "dropdown2Text";
+
+  const classes = `${styles.dropdown1} ${!dropdown1 ? styles.dropdown2 : ""}
+                    ${isOpen ? styles.open : ""}
+                  `;
 
   return (
     <div
@@ -48,15 +55,9 @@ const Filter = ({ text, dropdown1, typeOptions, handleClick }: FilterProps) => {
       onClick={() => setIsOpen((prev) => !prev)}
       ref={ref}
     >
-      <p id={dropdown1 ? "dropdown1Text" : "dropdown2Text"}>{currentFilter}</p>
-      <Arrow className={styles.arrow}/>
-      <div
-        className={`${styles.dropdown1} ${!dropdown1 ? styles.dropdown2 : ""}
-                    ${isOpen ? styles.open : ""}
-                  `}
-      >
-        {renderItems}
-      </div>
+      <p id={filterId}>{currentFilter}</p>
+      <Arrow className={styles.arrow} />
+      <div className={classes}>{renderItems}</div>
     </div>
   );
 };
