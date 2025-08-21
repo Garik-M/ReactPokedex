@@ -43,14 +43,14 @@ const Header = ({
     const fetchDetails = async () => {
       const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=900");
       const json = await res.json();
-      const data1 = json.results;
-      const data2 = data1.filter((obj: ObjData) => {
+      const dataOne = json.results;
+      const dataTwo = dataOne.filter((obj: ObjData) => {
         return obj.name.search(text.toLowerCase()) !== -1;
       });
-      if (data2.length) {
-        setData(data2);
+      if (dataTwo.length) {
+        setData(dataTwo);
       } else {
-        setData(data1);
+        setData(dataOne);
       }
     };
     fetchDetails();
@@ -129,12 +129,12 @@ const Header = ({
 
   const handleClick = async (
     evt: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    dropdown1: boolean,
+    dropdownOne: boolean,
     setCurrentFilter: React.Dispatch<React.SetStateAction<string>>,
     label: string
   ) => {
     const selected = evt.currentTarget.innerText.toLowerCase();
-    if (dropdown1 && selected !== "all types") {
+    if (dropdownOne && selected !== "all types") {
       try {
         const res = await fetch(`https://pokeapi.co/api/v2/type/${selected}`);
         const json: NewData = await res.json();
@@ -154,7 +154,7 @@ const Header = ({
       } catch (err) {
         console.error("Error fetching type:", err);
       }
-    } else if (dropdown1 && selected === "all types") {
+    } else if (dropdownOne && selected === "all types") {
       const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=900");
       const json = await res.json();
       const newData = json.results;
@@ -164,7 +164,7 @@ const Header = ({
       setActive(1);
       setStartIndex(0);
       setEndIndex(amount);
-    } else if (!dropdown1) {
+    } else if (!dropdownOne) {
       setCurrentSort(label);
       filterTypeId(label, data, setCurrentFilter);
       setNum(1);
@@ -178,31 +178,40 @@ const Header = ({
     typeOptions,
     handleClick,
   };
-  const ListProps = {
-    setAmount,
-    setStartIndex,
-    setEndIndex,
-    setNum,
-    setActive,
-  };
-
   return (
     <>
       <div className={styles.tagline}>Pokédex</div>
       <div className={styles.header}>
         <div className={styles.filters}>
-          <Form text={text} setText={setText} handleSubmit={handleSubmit} />
+          <Form
+            text={text}
+            setText={setText}
+            handleSubmit={handleSubmit}
+          />
           <div className={styles.filter_divs}>
-            <Filter text="All Types" dropdown1={true} {...filterProps} />
+            <Filter
+              text="All Types"
+              dropdownOne={true}
+              typeOptions={typeOptions}
+              handleClick={handleClick}
+            />
             <Filter
               text="Lowest To Highest Number"
-              dropdown1={false}
-              {...filterProps}
+              dropdownOne={false}
+              typeOptions={sortOptions}
+              handleClick={handleClick}
             />
           </div>
         </div>
         <div>
-          <ListNum amount={amount} {...ListProps} />
+          <ListNum
+            amount={amount}
+            setAmount={setAmount}
+            setStartIndex={setStartIndex}
+            setEndIndex={setEndIndex}
+            setNum={setNum}
+            setActive={setActive}
+          />
         </div>
       </div>
     </>

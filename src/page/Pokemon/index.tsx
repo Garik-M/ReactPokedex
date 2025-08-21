@@ -28,11 +28,11 @@ const Pokemon = () => {
       if (!response.ok) {
         return <div>404 | not Found</div>;
       }
-      const data1 = await response.json();
-      setData(data1);
-      const res = await fetch(data1.species.url);
-      const speciesData1 = await res.json();
-      setSpeciesData(speciesData1);
+      const dataOne = await response.json();
+      setData(dataOne);
+      const res = await fetch(dataOne.species.url);
+      const speciesDataOne = await res.json();
+      setSpeciesData(speciesDataOne);
     } catch (err) {
       console.log(`caught ${err} \n\n at fetching`);
     }
@@ -41,14 +41,15 @@ const Pokemon = () => {
   const getEvolveData = async () => {
     if (!speciesData?.evolution_chain?.url) return;
 
-    const evolveData1 = await fetch(speciesData?.evolution_chain.url);
-    const evolveData = await evolveData1.json();
+    const evolveDataOne = await fetch(speciesData?.evolution_chain.url);
+    const evolveData = await evolveDataOne.json();
     setEvolveData(evolveData);
   };
 
   useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     getData();
-  }, []);
+  }, [params.id]);
 
   useEffect(() => {
     getEvolveData();
@@ -92,7 +93,7 @@ const Pokemon = () => {
         </Link>
       </div>
       <div className={styles.name}>{name}</div>
-      <InfoContainer infos1={infos} data={data} />
+      <InfoContainer infosOne={infos} data={data} />
       <Evolution data={evolveData} />
     </div>
   );

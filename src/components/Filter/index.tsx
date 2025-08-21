@@ -5,27 +5,20 @@ import { ReactComponent as Arrow } from "../../assets/svg/arrow.svg";
 
 type FilterProps = {
   text: string;
-  dropdown1: boolean;
+  dropdownOne: boolean;
   typeOptions: Array<string>;
   handleClick: (
     evt: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    dropdown1: boolean,
+    dropdownOne: boolean,
     setCurrentFilter: React.Dispatch<React.SetStateAction<string>>,
     idFilterText: string
   ) => Promise<void>;
 };
 
-const Filter = ({ text, dropdown1, typeOptions, handleClick }: FilterProps) => {
+const Filter = ({ text, dropdownOne, typeOptions, handleClick }: FilterProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentFilter, setCurrentFilter] = useState(text);
   const ref = useRef<HTMLDivElement>(null);
-
-  const FilterBoxProps = {
-    handleClick,
-    dropdown1,
-    setCurrentFilter,
-    currentFilter,
-  };
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -39,12 +32,15 @@ const Filter = ({ text, dropdown1, typeOptions, handleClick }: FilterProps) => {
   }, []);
 
   const renderItems = typeOptions.map((label) => (
-    <FilterBox key={label} label={label} {...FilterBoxProps} />
+    <FilterBox key={label} label={label} handleClick={handleClick}
+    dropdownOne={dropdownOne}
+    setCurrentFilter={setCurrentFilter}
+    currentFilter={currentFilter} />
   ));
 
-  const filterId = dropdown1 ? "dropdown1Text" : "dropdown2Text";
+  const filterId = dropdownOne ? "dropdownOneText" : "dropdownTwoText";
 
-  const classes = `${styles.dropdown1} ${!dropdown1 ? styles.dropdown2 : ""}
+  const classes = `${styles.dropdownOne} ${!dropdownOne ? styles.dropdownTwo : ""}
                     ${isOpen ? styles.open : ""}
                   `;
 

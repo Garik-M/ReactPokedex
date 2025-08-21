@@ -21,19 +21,19 @@ const handleClick = (
   num: number,
   setNum: React.Dispatch<React.SetStateAction<number>>
 ) => {
-  const num1 = Number(evt.currentTarget.innerHTML);
+  const numOne = Number(evt.currentTarget.innerHTML);
   clearTimeout(timeOut);
   timeOut = setTimeout(() => {
-    setStartIndex((num1 - 1) * amount);
-    setEndIndex(num1 * amount);
+    setStartIndex((numOne - 1) * amount);
+    setEndIndex(numOne * amount);
   }, 500);
-  if (num1 > num + 3 && (num + 3) * amount < 900 - amount) {
+  if (numOne > num + 3 && (num + 3) * amount < 900 - amount) {
     if ((num + 3) * amount >= 900 - 4 * amount) {
       setNum(num);
     } else {
       setNum(num + 2);
     }
-  } else if (num1 < num + 2) {
+  } else if (numOne < num + 2) {
     if (num <= 2) {
       setNum(1);
     } else {

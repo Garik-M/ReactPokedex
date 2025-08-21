@@ -3,7 +3,7 @@ import { PokeData } from "../Card/Card.types";
 import StatBox from "../StatBox";
 
 type Props = {
-  infos1: {
+  infosOne: {
     height: number | undefined;
     weight: number | undefined;
     category: string | undefined;
@@ -23,14 +23,14 @@ const Box = ({ isActive }: BoxProp) => {
   return <div className={`${styles.box} ${isActive}`} />;
 };
 
-const InfoContainer = ({ infos1, data }: Props) => {
+const InfoContainer = ({ infosOne, data }: Props) => {
   const state = {
-    Height: infos1.height! / 10 + "m",
-    Weight: infos1.weight! / 10 + "kg",
-    Category: infos1.category?.slice(0, -8),
-    Types: infos1.types?.join(" "),
-    Abilities: infos1.abilities?.join(" "),
-    Genders: infos1.genders,
+    Height: infosOne.height! / 10 + "m",
+    Weight: infosOne.weight! / 10 + "kg",
+    Category: infosOne.category?.slice(0, -8),
+    Types: infosOne.types?.join(" "),
+    Abilities: infosOne.abilities?.join(" "),
+    Genders: infosOne.genders,
   };
 
   const infos = Object.keys(state).map((info, i) => (
@@ -66,10 +66,10 @@ const InfoContainer = ({ infos1, data }: Props) => {
   return (
     <div className={styles.container}>
       <div className={styles.imgDiv}>
-        <img src={infos1.img} alt="pokemon avatar" />
+        <img src={infosOne.img} alt="pokemon avatar" />
       </div>
       <div className={styles.wrapper}>
-        <p className={styles.flavor}>{infos1.flavor}</p>
+        <p className={styles.flavor}>{infosOne.flavor}</p>
         <div className={styles.stats}>{infos}</div>
         <div className={styles.charts}>
           <p className={styles.heading}>Stats</p>

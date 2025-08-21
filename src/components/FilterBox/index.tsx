@@ -4,11 +4,11 @@ type Props = {
   label: string;
   handleClick: (
     evt: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    dropdown1: boolean,
+    dropdownOne: boolean,
     setCurrentFilter: React.Dispatch<React.SetStateAction<string>>,
     idFilterText: string
   ) => Promise<void>;
-  dropdown1: boolean;
+  dropdownOne: boolean;
   setCurrentFilter: React.Dispatch<React.SetStateAction<string>>;
   currentFilter: string;
 };
@@ -16,12 +16,12 @@ type Props = {
 const FilterBox = ({
   label,
   handleClick,
-  dropdown1,
+  dropdownOne,
   setCurrentFilter,
   currentFilter,
 }: Props) => {
   const isActive = currentFilter === label ? styles.active : "";
-  const isLong = !dropdown1 ? styles.long : "";
+  const isLong = !dropdownOne ? styles.long : "";
 
   return (
     <div
@@ -29,7 +29,7 @@ const FilterBox = ({
       className={`${styles.box} ${isLong} ${isActive}`}
       tabIndex={0}
       onClick={(e) => {
-        handleClick(e, dropdown1, setCurrentFilter, label);
+        handleClick(e, dropdownOne, setCurrentFilter, label);
       }}
     >
       {label}

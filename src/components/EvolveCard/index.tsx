@@ -10,7 +10,7 @@ type Props = {
 };
 const EvolveCard = ({ name, data }: Props) => {
   const [pokeData, setPokeData] = useState<PokeData>();
-  
+
   const getEvolveCardData = async () => {
     const chain = data!.chain
     let url = chain.species.name === name
@@ -20,10 +20,10 @@ const EvolveCard = ({ name, data }: Props) => {
       : chain.evolves_to?.[0].evolves_to?.[0].species.name === name
       ? chain.evolves_to?.[0].evolves_to?.[0].species.url : null
     
-    const speciesData1 = await fetch(url!);
-    const speciesData: SpeciesType = await speciesData1.json();
-    const pokeData1 = await fetch(speciesData.varieties[0].pokemon.url);
-    const pokeData = await pokeData1.json();
+    const speciesDataOne = await fetch(url!);
+    const speciesData: SpeciesType = await speciesDataOne.json();
+    const pokeDataOne = await fetch(speciesData.varieties[0].pokemon.url);
+    const pokeData = await pokeDataOne.json();
     setPokeData(pokeData);
   };
 
