@@ -3,7 +3,7 @@
 .container {
   @include flex($gap: 10px);
   color: $green;
-  background-color: #fff;
+  background-color: $white;
 
   .dropdown {
     height: 35px;
@@ -13,7 +13,7 @@
     cursor: pointer;
 
     &.isOpen {
-      box-shadow: 1px 3px 8px 0 rgba(0, 0, 0, 0.2);
+      box-shadow: 1px 3px 8px 0 $black;
     }
     .arrow {
       fill: $green;
@@ -29,8 +29,8 @@
       position: absolute;
       top: 35px;
       left: 0;
-      box-shadow: 1px 3px 8px 0 rgba(0, 0, 0, 0.2);
-      background-color: #fff;
+      box-shadow: 1px 3px 8px 0 $black;
+      background-color: $white;
       z-index: 3;
 
       &.open {
@@ -44,12 +44,12 @@
 
         &.active {
           background-color: $green;
-          color: #fff;
+          color: $white;
         }
       }
       .box:hover {
         background-color: $green;
-        color: white;
+        color: $white;
       }
     }
     .arrow:has(+ .open) {

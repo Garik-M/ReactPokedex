@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 import styles from "./Pokemon.module.scss";
 
@@ -14,6 +14,7 @@ import Loading from "../../components/Loading";
 
 const Pokemon = () => {
   const params = useParams();
+  const navigate = useNavigate();
 
   const [data, setData] = useState<PokeData>();
   const [speciesData, setSpeciesData] = useState<SpeciesType>();
@@ -26,7 +27,7 @@ const Pokemon = () => {
       );
 
       if (!response.ok) {
-        return <div>404 | not Found</div>;
+        return navigate("/404");
       }
       const dataOne = await response.json();
       setData(dataOne);

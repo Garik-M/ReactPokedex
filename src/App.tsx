@@ -7,19 +7,19 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <HomePage />,
-    errorElement: <div>404 | NOT FOUND</div>,
+  },
+  {
+    path: "*",
+    element: <div>error</div>,
   },
   {
     path: "/pokemon/:id",
     element: <Pokemon />,
-    errorElement: <div>404 | NOT FOUND</div>,
   },
 ]);
 
 function App() {
-  return (
-    <RouterProvider router={router} />
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

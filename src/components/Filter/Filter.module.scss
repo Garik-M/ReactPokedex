@@ -1,7 +1,7 @@
 @import "../../styles/App.scss";
 
 .filter {
-  background-color: #fff;
+  background-color: $white;
   position: relative;
   max-width: 256px;
   height: 40px;
@@ -18,7 +18,7 @@
   }
 
   .dropdownOne {
-    box-shadow: 1px 3px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 3px 8px 0 $black;
     display: none;
     position: absolute;
     width: 200%;
@@ -27,7 +27,7 @@
     top: 40px;
     left: 0;
     gap: 0;
-    background-color: #fff;
+    background-color: $white;
     white-space: nowrap;
 
     &.open {

@@ -10,10 +10,10 @@
   }
   &.active{
     background-color: $green;
-    color: #fff;
+    color: $white;
   }
 }
 .box:hover {
   background-color: $green;
-  color: white;
+  color: $white;
 }
