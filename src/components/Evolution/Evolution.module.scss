@@ -2,13 +2,21 @@
 
 .evolution_container {
   margin-top: 20px;
+
+  @media (max-width: 769px) {
+    width: 100%;
+  }
   .headline {
     color: $green;
     font-size: 24px;
     font-weight: bold;
   }
-  .evolutions{
+  .evolutions {
     @include flex($gap: 20px);
     margin: 16px 0 0;
+
+    @media (max-width: 769px) {
+      flex-flow: column nowrap;
+    }
   }
 }

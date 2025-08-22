@@ -7,12 +7,46 @@
   display: grid;
   grid-template-columns: 20fr auto;
   justify-content: space-between;
+
+  @media (max-width: 1050px) {
+    grid-template-columns: 20fr auto;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
   .filters {
     display: flex;
     justify-content: start;
     gap: 20px;
+
     .filter_divs {
       @include flex($gap: 20px);
+
+      @media (max-width: 1050px) {
+        justify-content: space-between;
+      }
+
+      @media (max-width: 463px) {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 1050px) {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 768px) {
+      display: flex;
+      gap: 20px;
+      flex-direction: column;
+    }
+
+    @media (max-width: 463px) {
+      grid-template-rows: 1fr 2fr;
     }
   }
 }
@@ -22,42 +56,4 @@
   font-size: 48px;
   font-weight: bold;
   color: $green;
-}
-
-@media screen and (max-width: 1050px) {
-  .header {
-    grid-template-columns: 20fr auto;
-    .filters {
-      width: 100%;
-      justify-content: space-between;
-    }
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .header {
-    grid-template-columns: 1fr;
-    .filters {
-      display: flex;
-      gap: 20px;
-      flex-direction: column;
-
-      .filter_divs {
-        justify-content: space-between;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 463px) {
-  .header {
-    .filters {
-      grid-template-rows: 1fr 2fr;
-      .filter_divs {
-        display: grid;
-        gap: 20px;
-        grid-template-columns: 1fr;
-      }
-    }
-  }
 }

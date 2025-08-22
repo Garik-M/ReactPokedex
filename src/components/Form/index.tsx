@@ -1,5 +1,5 @@
 import styles from "./Form.module.scss";
-import { ReactComponent as SearchIcon } from "../../assets/svg/searchIcon.svg";
+import { ReactComponent as SearchIcon } from "assets/svg/searchIcon.svg";
 
 type Props = {
   text: string;

@@ -7,6 +7,10 @@
   padding: 60px 32px 140px;
   margin: 0 auto;
 
+  @media (max-width: 550px) {
+    padding: 50px 20px 90px;
+  }
+  
   .link {
     font-size: 20px;
     font-weight: 500;
@@ -19,32 +23,18 @@
     font-size: 48px;
     font-weight: 700;
     color: $green;
+
+    @media (max-width: 769px) {
+      font-size: 40px;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 341px) {
+      font-size: 36px;
+    }
   }
 }
 
 .contain {
   height: 400px;
-}
-
-@media screen and (max-width: 550px) {
-  .content {
-    padding: 50px 20px 90px;
-  }
-}
-
-@media screen and (max-width: 769px) {
-  .content {
-    .name {
-      font-size: 40px;
-      margin-top: 20px;
-    }
-  }
-}
-
-@media screen and (max-width: 341px) {
-  .content {
-    .name {
-      font-size: 36px;
-    }
-  }
 }

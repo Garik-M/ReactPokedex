@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./ListAmount.module.scss";
-import { ReactComponent as Arrow } from "../../assets/svg/arrow.svg";
+import { ReactComponent as Arrow } from "assets/svg/arrow.svg";
 
 type Props = {
   amount: number;

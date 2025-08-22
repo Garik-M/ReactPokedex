@@ -1,7 +1,7 @@
-import FilterBox from "../FilterBox";
+import FilterBox from "components/FilterBox";
 import styles from "./Filter.module.scss";
 import { useEffect, useRef, useState } from "react";
-import { ReactComponent as Arrow } from "../../assets/svg/arrow.svg";
+import { ReactComponent as Arrow } from "assets/svg/arrow.svg";
 
 type FilterProps = {
   text: string;
@@ -15,7 +15,12 @@ type FilterProps = {
   ) => Promise<void>;
 };
 
-const Filter = ({ text, dropdownOne, typeOptions, handleClick }: FilterProps) => {
+const Filter = ({
+  text,
+  dropdownOne,
+  typeOptions,
+  handleClick,
+}: FilterProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentFilter, setCurrentFilter] = useState(text);
   const ref = useRef<HTMLDivElement>(null);
@@ -32,15 +37,21 @@ const Filter = ({ text, dropdownOne, typeOptions, handleClick }: FilterProps) =>
   }, []);
 
   const renderItems = typeOptions.map((label) => (
-    <FilterBox key={label} label={label} handleClick={handleClick}
-    dropdownOne={dropdownOne}
-    setCurrentFilter={setCurrentFilter}
-    currentFilter={currentFilter} />
+    <FilterBox
+      key={label}
+      label={label}
+      handleClick={handleClick}
+      dropdownOne={dropdownOne}
+      setCurrentFilter={setCurrentFilter}
+      currentFilter={currentFilter}
+    />
   ));
 
   const filterId = dropdownOne ? "dropdownOneText" : "dropdownTwoText";
 
-  const classes = `${styles.dropdownOne} ${!dropdownOne ? styles.dropdownTwo : ""}
+  const classes = `${styles.dropdownOne} ${
+    !dropdownOne ? styles.dropdownTwo : ""
+  }
                     ${isOpen ? styles.open : ""}
                   `;
 

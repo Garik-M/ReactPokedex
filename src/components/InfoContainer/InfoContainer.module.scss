@@ -7,6 +7,13 @@
   margin-top: 40px;
   width: 100%;
 
+  @media (max-width: 900px) {
+    gap: 36px;
+  }
+
+  @media (max-width: 769px) {
+    @include flex(space-between, $dir1: column, $gap: 36px);
+  }
   .imgDiv {
     @include flex();
     width: 420px;
@@ -14,6 +21,25 @@
     background-color: $gray;
     border-radius: 10px;
     padding: 20px;
+
+    @media (max-width: 1050px) {
+      width: 360px;
+      height: 360px;
+    }
+    @media (max-width: 900px) {
+      width: 300px;
+      height: 300px;
+    }
+    @media (max-width: 769px) {
+      width: 400px;
+      height: 400px;
+    }
+    @media (max-width: 550px) {
+      width: 100%;
+      height: auto;
+      min-height: calc(100vw - 32px);
+    }
+
     img {
       width: 100%;
     }
@@ -22,6 +48,10 @@
     .flavor {
       font-size: 20px;
       font-weight: 400;
+
+      @media (max-width: 550px) {
+        font-size: 16px;
+      }
     }
     .stats {
       display: grid;
@@ -45,11 +75,32 @@
         display: grid;
         grid-template-columns: repeat(6, minmax(0, 1fr));
 
+        @media (max-width: 1200px) {
+          gap: 16px 24px;
+        }
+        @media (max-width: 1050px) {
+          padding: 0;
+        }
+        @media (max-width: 900px) {
+          gap: 14px;
+        }
+        @media (max-width: 550px) {
+          gap: 10px;
+        }
+        @media (max-width: 341px) {
+          gap: 6px;
+        }
+
         .chart {
           display: grid;
           grid-template-rows: repeat(15, 1fr);
           gap: 4px;
           height: 180px;
+
+          @media (max-width: 1050px) {
+            height: 160px;
+            padding: 0;
+          }
           .box {
             width: 100%;
             background-color: $gray;
@@ -61,104 +112,11 @@
         .chartName {
           margin: 6px 0 0;
           text-align: center;
-        }
-      }
-    }
-  }
-}
 
-@media (max-width: 1200px) {
-  .container {
-    .wrapper {
-      .charts {
-        .content {
-          gap: 16px 24px;
-        }
-      }
-    }
-  }
-}
-
-@media (max-width: 1050px) {
-  .container {
-    .wrapper {
-      .chartName {
-        font-size: 14px;
-        font-weight: 400;
-      }
-
-      .charts {
-        .content {
-          padding: 0;
-        }
-      }
-    }
-    .imgDiv {
-      width: 360px;
-      height: 360px;
-    }
-    .chart {
-      height: 160px;
-      padding: 0;
-    }
-  }
-}
-
-@media (max-width: 900px) {
-  .container {
-    gap: 36px;
-    .imgDiv {
-      width: 300px;
-      height: 300px;
-    }
-    .wrapper {
-      .charts {
-        .content {
-          gap: 14px;
-        }
-      }
-    }
-  }
-}
-
-@media (max-width: 769px) {
-  .container {
-    @include flex(space-between, $dir1: column, $gap: 36px);
-    .imgDiv {
-      width: 400px;
-      height: 400px;
-    }
-  }
-}
-
-@media (max-width: 550px) {
-  .container {
-    .imgDiv {
-      width: 100%;
-      height: auto;
-      min-height: calc(100vw - 32px);
-    }
-    .wrapper {
-      .flavor {
-        font-size: 16px;
-      }
-      .charts {
-        .content {
-          gap: 10px;
-        }
-      }
-    }
-  }
-}
-
-@media (max-width: 341px) {
-}
-@media (max-width: 341px) {
-  .container {
-    .wrapper {
-      .charts {
-        .content {
-          gap: 6px;
+          @media (max-width: 1050px) {
+            font-size: 14px;
+            font-weight: 400;
+          }
         }
       }
     }

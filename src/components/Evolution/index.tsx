@@ -1,6 +1,6 @@
 import styles from "./Evolution.module.scss";
-import EvolveCard from "../EvolveCard";
-import { EvolveType } from "../Card/Card.types";
+import EvolveCard from "components/EvolveCard";
+import { EvolveType } from "components/Card/Card.types";
 
 type EvolveProp = {
   data: EvolveType | undefined;

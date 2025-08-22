@@ -7,6 +7,9 @@
   background-color: $white;
   @include flex();
 
+  @media screen and (max-width: 768px){
+    width: 100%;
+  }
   .search {
     width: 100%;
     height: 100%;
@@ -23,11 +26,5 @@
     border: none;
     background-color: $green;
     cursor: pointer;
-  }
-}
-
-@media screen and (max-width: 768px){
-  .form{
-    width: 100%;
   }
 }

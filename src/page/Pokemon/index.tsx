@@ -3,14 +3,11 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 
 import styles from "./Pokemon.module.scss";
 
-import {
-  EvolveType,
-  PokeData,
-  SpeciesType,
-} from "../../components/Card/Card.types";
-import InfoContainer from "../../components/InfoContainer";
-import Evolution from "../../components/Evolution";
-import Loading from "../../components/Loading";
+import { EvolveType, PokeData, SpeciesType } from "components/Card/Card.types";
+import InfoContainer from "components/InfoContainer";
+import Evolution from "components/Evolution";
+import Loading from "components/Loading";
+import axios from "axios";
 
 const Pokemon = () => {
   const params = useParams();
@@ -22,29 +19,29 @@ const Pokemon = () => {
 
   const getData = async () => {
     try {
-      const response = await fetch(
+      const dataOne = await axios.get<PokeData>(
         `https://pokeapi.co/api/v2/pokemon/${params.id}`
       );
-
-      if (!response.ok) {
-        return navigate("/404");
-      }
-      const dataOne = await response.json();
-      setData(dataOne);
-      const res = await fetch(dataOne.species.url);
-      const speciesDataOne = await res.json();
-      setSpeciesData(speciesDataOne);
+      setData(dataOne.data);
+      const speciesDataOne = await axios.get<SpeciesType>(
+        dataOne.data.species.url
+      );
+      setSpeciesData(speciesDataOne.data);
     } catch (err) {
       console.log(`caught ${err} \n\n at fetching`);
+      return navigate("/404");
     }
   };
 
   const getEvolveData = async () => {
     if (!speciesData?.evolution_chain?.url) return;
-
-    const evolveDataOne = await fetch(speciesData?.evolution_chain.url);
-    const evolveData = await evolveDataOne.json();
-    setEvolveData(evolveData);
+    try {
+      const evolveData = await axios.get(speciesData?.evolution_chain.url);
+      setEvolveData(evolveData.data);
+    } catch (err) {
+      console.error(err);
+      return navigate("/404");
+    }
   };
 
   useEffect(() => {

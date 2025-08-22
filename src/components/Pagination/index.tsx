@@ -1,6 +1,4 @@
-import { useState } from "react";
 import styles from "./Pagination.module.scss";
-import { time } from "console";
 
 type Prop = {
   setStartIndex: React.Dispatch<React.SetStateAction<number>>;

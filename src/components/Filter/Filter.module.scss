@@ -11,6 +11,12 @@
   box-shadow: 1px 3px 8px 0 rgba(0, 0, 0, 0.2);
   white-space: nowrap;
   cursor: pointer;
+
+  @media (max-width: 463px) {
+    width: 100%;
+    max-width: none;
+    justify-content: space-between;
+  }
   .arrow {
     fill: $green;
     transform: scale(0.55) rotate(90deg);
@@ -33,6 +39,10 @@
     &.open {
       @include flex($dir1: column, $dir2: wrap);
     }
+
+    @media (max-width: 463px) {
+      width: 100%;
+    }
   }
   .arrow:has(+ .open) {
     transform: scale(0.55) rotate(-90deg);
@@ -44,15 +54,3 @@
   }
 }
 
-
-@media screen and (max-width: 463px){
-  .filter{
-    width: 100%;
-    max-width: none;
-    justify-content: space-between;
-
-    .dropdownOne{
-      width: 100%;
-    }
-  }
-}
