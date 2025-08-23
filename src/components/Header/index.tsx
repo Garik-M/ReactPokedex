@@ -46,6 +46,7 @@ const Header = ({
         return obj.name.search(text.toLowerCase()) !== -1;
       });
       if (dataTwo.length) {
+        setNotFound(false);
         setData(dataTwo);
       } else {
         setNotFound(true);
