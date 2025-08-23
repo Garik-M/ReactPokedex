@@ -6,7 +6,7 @@ const NotFound = () => {
   return (
     <div className={styles.container}>
       <div className={styles.half}>
-        <p style={{ marginRight: "200px" }}>404</p>
+        <p>404</p>
       </div>
       <div>
         {arr.map((i) => (
@@ -17,7 +17,7 @@ const NotFound = () => {
         ))}
       </div>
       <div className={styles.half}>
-        <p style={{ marginLeft: "200px" }}>Not Found</p>
+        <p>Not Found</p>
       </div>
     </div>
   );

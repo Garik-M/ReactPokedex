@@ -10,14 +10,53 @@
     width: 50%;
     height: 100%;
     background-color: $skin;
+
+    @media (max-width: 1050px) {
+      @include flex;
+    }
+    @media (max-width: 550px) {
+      @include flex(start);
+    }
     p {
       font-size: 48px;
       font-weight: 600;
+      margin-right: 200px;
+      z-index: 3;
+      @media (max-width: 1050px) {
+        margin: 0;
+      }
+      @media (max-width: 550px) {
+        margin-left: 40px;
+        font-size: 40px;
+      }
+      @media (max-width: 440px) {
+        font-size: 32px;
+      }
     }
     &:last-child {
       justify-content: start;
       background-color: black;
       color: $skin;
+      @media (max-width: 1050px) {
+        @include flex;
+      }
+      @media (max-width: 550px) {
+        @include flex(end);
+      }
+      p {
+        margin: 0 0 0 200px;
+        text-align: center;
+        @media (max-width: 1050px) {
+          margin: 0;
+        }
+        @media (max-width: 769px) {
+          padding: 0 100px;
+        }
+        @media (max-width: 550px) {
+          width: min-content;
+          padding: 0 20px;
+        }
+      }
     }
   }
   .circle {
