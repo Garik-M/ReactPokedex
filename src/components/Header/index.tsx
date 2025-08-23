@@ -22,6 +22,7 @@ type Props = {
     setCurrentFilter: React.Dispatch<React.SetStateAction<string>>,
     label: string
   ) => Promise<void>;
+  setNotFound: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const Header = ({
@@ -34,6 +35,7 @@ const Header = ({
   setEndIndex,
   initialData,
   handleClick,
+  setNotFound,
 }: Props) => {
   const [text, setText] = useState("");
 
@@ -46,7 +48,7 @@ const Header = ({
       if (dataTwo.length) {
         setData(dataTwo);
       } else {
-        setData(initialData);
+        setNotFound(true);
       }
     };
     fetchDetails();

@@ -17,6 +17,7 @@ type Props = {
   endIndex: number;
   setEndIndex: React.Dispatch<React.SetStateAction<number>>;
   details: Record<string, PokeData>;
+  notFound: boolean;
 };
 
 const Main = ({
@@ -31,6 +32,7 @@ const Main = ({
   endIndex,
   setEndIndex,
   details,
+  notFound
 }: Props) => {
   useEffect(() => {
     setEndIndex(amount + startIndex);
@@ -42,7 +44,9 @@ const Main = ({
     return <Card name={pokemon.name} key={id} id={id} data={pokeData} />;
   });
 
-  return (
+  return notFound ? (
+    <div style={{marginTop: "100px", fontSize: "22px"}}>Nothing was found</div>
+  ) : (
     <>
       <div className={styles.main}>{renderCard}</div>
       <Pagination

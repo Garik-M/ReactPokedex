@@ -32,7 +32,8 @@ const HomePage = () => {
   const [active, setActive] = useState<number>(num);
   const [details, setDetails] = useState<Record<string, PokeData>>({});
   const [initialData, setInitialData] = useState<ObjData[]>([]);
-  const [currentSort, setCurrentSort] = useState("Lowest To Highest Number");
+  const [currentSort, setCurrentSort] = useState<string>("Lowest To Highest Number");
+  const [notFound, setNotFound] = useState<boolean>(false);
 
   const filterTypeById = (
     label: string,
@@ -172,6 +173,7 @@ const HomePage = () => {
         setEndIndex={setEndIndex}
         initialData={initialData}
         handleClick={handleFilterClick}
+        setNotFound={setNotFound}
       />
       <Main
         amount={amount}
@@ -185,6 +187,7 @@ const HomePage = () => {
         endIndex={endIndex}
         setEndIndex={setEndIndex}
         details={details}
+        notFound={notFound}
       />
     </div>
   );
