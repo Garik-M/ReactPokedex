@@ -6,13 +6,14 @@
   height: 100vh;
   overflow: hidden;
   .half {
-    @include flex;
+    @include flex(end);
     width: 50%;
     height: 100%;
     font-size: 45px;
     font-weight: 700;
     background-color: $skin;
     &:last-child {
+      justify-content: start;
       background-color: black;
       color: $skin;
     }
@@ -23,8 +24,8 @@
     aspect-ratio: 1/1;
     border-radius: 85px;
     background-color: $skin;
-    animation: down 3s linear infinite;
-    margin: 0 0 0 -40px;
+    animation: down 2s linear infinite;
+    margin-left: -40px;
 
     &:first-child {
       top: -405px;
