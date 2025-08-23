@@ -1,0 +1,91 @@
+@import "styles/App.scss";
+
+.container {
+  @include flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  .half {
+    @include flex;
+    width: 50%;
+    height: 100%;
+    font-size: 45px;
+    font-weight: 700;
+    background-color: $skin;
+    &:last-child {
+      background-color: black;
+      color: $skin;
+    }
+  }
+  .circle {
+    position: absolute;
+    width: 170px;
+    aspect-ratio: 1/1;
+    border-radius: 85px;
+    background-color: $skin;
+    animation: down 3s linear infinite;
+    margin: 0 0 0 -40px;
+
+    &:first-child {
+      top: -405px;
+      left: 50%;
+      translate: -50%;
+    }
+    &:nth-child(2) {
+      top: -255px;
+      left: 50%;
+      translate: -50%;
+    }
+    &:nth-child(3) {
+      top: -105px;
+      left: 50%;
+      translate: -50%;
+    }
+    &:nth-child(4) {
+      top: 45px;
+      left: 50%;
+      translate: -50%;
+    }
+    &:nth-child(5) {
+      top: 195px;
+      left: 50%;
+      translate: -50%;
+    }
+    &:nth-child(6) {
+      top: 345px;
+      left: 50%;
+      translate: -50%;
+    }
+    &:nth-child(7) {
+      top: 495px;
+      left: 50%;
+      translate: -50%;
+    }
+    &:nth-child(8) {
+      top: 645px;
+      left: 50%;
+      translate: -50%;
+    }
+    &:nth-child(9) {
+      top: 795px;
+      left: 50%;
+      translate: -50%;
+    }
+    &.black {
+      background-color: black;
+      margin: 0 40px 0;
+    }
+  }
+}
+
+@keyframes down {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(88.8%);
+  }
+  100% {
+    transform: translateY(177.6%);
+  }
+}

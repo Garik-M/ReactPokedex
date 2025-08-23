@@ -54,6 +54,7 @@ const Main = ({
         setNum={setNum}
         active={active}
         setActive={setActive}
+        data={data}
       />
     </>
   );

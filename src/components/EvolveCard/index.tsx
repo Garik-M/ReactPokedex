@@ -16,7 +16,7 @@ const EvolveCard = ({ name, data }: Props) => {
 
   const getEvolveCardData = async () => {
     const chain = data!.chain;
-    let url =
+    const url =
       chain.species.name === name
         ? chain.species.url
         : chain.evolves_to?.[0].species.name === name

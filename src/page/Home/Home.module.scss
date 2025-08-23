@@ -1,6 +1,6 @@
 @import "../../styles/App.scss";
 
-.content{
+.content {
   width: 100%;
   @include flex($dir1: column);
   margin: 0 auto;
